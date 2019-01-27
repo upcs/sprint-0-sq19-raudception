@@ -1,9 +1,10 @@
 
 
 function func() {
-
+    
+    
     console.log("In Function");
-    addNums(document.getElementById("num1").value, document.getElementById("num2").value);
+    finalInt = addNums(document.getElementById("num1").value, document.getElementById("num2").value);
 
     console.log(addNums.finalInt);
     var para1 = document.createElement("p");
@@ -12,7 +13,7 @@ function func() {
 
     var para2 = document.createElement("p");
     para2.id = "finalNum";
-    para2.innerText = "Final Number: " + addNums.finalInt;
+    para2.innerText = "Final Number: " + finalInt;
     para1.appendChild(para2);
 
     var element = document.getElementById("basediv");

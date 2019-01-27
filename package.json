@@ -18,5 +18,9 @@
   "homepage": "https://github.com/upcs/sprint-0-sq19-raudception#readme",
   "dependencies": {
     "express": "^4.16.4"
+  },
+  "devDependencies": {
+    "jest": "^24.0.0"
   }
+  
 }

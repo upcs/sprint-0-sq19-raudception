@@ -4,8 +4,9 @@ function addNums(one, two) {
     var int2 = two;
     var int3 = parseInt(int1) + parseInt(int2);
 
-    addNums.finalInt = int3;
+    return int3;
 }
 
 
 
+module.exports = addNums;
