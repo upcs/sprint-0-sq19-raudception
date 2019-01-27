@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/upcs/sprint-0-sq19-raudception/issues"
   },
-  "homepage": "https://github.com/upcs/sprint-0-sq19-raudception#readme"
+  "homepage": "https://github.com/upcs/sprint-0-sq19-raudception#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
 }

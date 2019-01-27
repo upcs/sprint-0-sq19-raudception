@@ -1,39 +1,56 @@
-//code From https://www.tutorialspoint.com/nodejs/nodejs_web_module.htm
+/*Code from https://developer.mozilla.org/en-US/docs/Learn/Server-side/Node_server_without_framework   */
 
 var http = require('http');
 var fs = require('fs');
-var url = require('url');
+var path = require('path');
 
-// Create a server
-http.createServer( function (request, response) {  
-   // Parse the request containing file name
-   var pathname = url.parse(request.url).pathname;
-   
-   // Print the name of the file for which request is made.
-   console.log("Request for " + pathname + " received.");
-   
-   // Read the requested file content from file system
-   fs.readFile(pathname.substr(1), function (err, data) {
-      if (err) {
-         console.log(err);
-         
-         // HTTP Status: 404 : NOT FOUND
-         // Content Type: text/plain
-         response.writeHead(404, {'Content-Type': 'text/html'});
-      } else {	
-         //Page found	  
-         // HTTP Status: 200 : OK
-         // Content Type: text/plain
-         response.writeHead(200, {'Content-Type': 'text/html'});	
-         
-         // Write the content of the file to response body
-         response.write(data.toString());		
-      }
-      
-      // Send the response body 
-      response.end();
-   });   
+http.createServer(function (request, response) {
+    console.log('request ', request.url);
+
+    var filePath = '.' + request.url;
+    if (filePath == './') {
+        filePath = './index.html';
+    }
+
+    var extname = String(path.extname(filePath)).toLowerCase();
+    var mimeTypes = {
+        '.html': 'text/html',
+        '.js': 'text/javascript',
+        '.css': 'text/css',
+        '.json': 'application/json',
+        '.png': 'image/png',
+        '.jpg': 'image/jpg',
+        '.gif': 'image/gif',
+        '.wav': 'audio/wav',
+        '.mp4': 'video/mp4',
+        '.woff': 'application/font-woff',
+        '.ttf': 'application/font-ttf',
+        '.eot': 'application/vnd.ms-fontobject',
+        '.otf': 'application/font-otf',
+        '.svg': 'application/image/svg+xml'
+    };
+
+    var contentType = mimeTypes[extname] || 'application/octet-stream';
+
+    fs.readFile(filePath, function(error, content) {
+        if (error) {
+            if(error.code == 'ENOENT') {
+                fs.readFile('./404.html', function(error, content) {
+                    response.writeHead(200, { 'Content-Type': contentType });
+                    response.end(content, 'utf-8');
+                });
+            }
+            else {
+                response.writeHead(500);
+                response.end('Sorry, check with the site admin for error: '+error.code+' ..\n');
+                response.end();
+            }
+        }
+        else {
+            response.writeHead(200, { 'Content-Type': contentType });
+            response.end(content, 'utf-8');
+        }
+    });
+
 }).listen(8081);
-
-// Console will print the message
 console.log('Server running at http://127.0.0.1:8081/');
