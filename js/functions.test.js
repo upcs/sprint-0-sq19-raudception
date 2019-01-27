@@ -8,3 +8,8 @@ test('Adds 1 + 2', () => {
 test('Adds -46 + 19', () => {
     expect(addNums(-46,19)).toBe(parseInt(-27));
 });
+
+test('Adds -46 + 19', () => {
+    expect(addNums(-46,19)).toBe(parseInt(-26));
+});
+
