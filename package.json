@@ -1,0 +1,19 @@
+{
+  "name": "sprint-0-sq19-raudception",
+  "version": "1.0.0",
+  "description": "Sprint 0",
+  "main": "server.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/upcs/sprint-0-sq19-raudception.git"
+  },
+  "author": "Kollin Raudsepp",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/upcs/sprint-0-sq19-raudception/issues"
+  },
+  "homepage": "https://github.com/upcs/sprint-0-sq19-raudception#readme"
+}
